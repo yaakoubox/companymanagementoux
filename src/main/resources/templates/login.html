@@ -1,0 +1,127 @@
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" th:href="@{/css/loginStyle.css}" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+		rel="stylesheet">
+
+
+<head>
+	<meta charset="utf-8">
+	<title>Log In</title>
+</head>
+
+
+<body>
+
+
+<div class="leftSide"></div>
+
+
+
+<div class="rightSide">
+
+
+	<div class="logoContainer" >
+		<p class="ouxLogo"><span class="OXLetters" >O</span><span class="ULetter" >U</span><span class="OXLetters">X</span></p>
+		<h5>Company</h5>
+		<h5>Management</h5>
+	</div>
+
+
+	<div class="description" >
+		<div class="heading" >
+			Design still updating ...
+		</div>
+		<div class="demonstration" >
+			Please Sign Up to see the actions of my web site
+		</div>
+	</div>
+
+
+
+	<div class="loginForm">
+
+		<div class="loginFormContent">
+
+
+
+
+			<span class="welcomein" >Welcome in </span><span class="ouxLogo"><span class="OXLetters" >O</span><span class="ULetter" >U</span><span class="OXLetters">X</span></span>
+			<h2>Sign in your account</h2>
+
+			<form th:action="@{/authenticateTheUser}" method="POST">
+
+				<div th:if="${param.error}" class="errors">
+					Invalid username or password .
+				</div>
+
+				<div th:if="${param.logout}" id="loggedoutdiv" >
+					You have been logged out .
+				</div>
+
+				<br> <b>Username</b> <br>
+				<div class="inputs">
+					<input type="text" placeholder="Enter your username"
+						   name="username" />
+				</div>
+				<br> <b>Password</b> <br>
+				<div class="inputs">
+					<input type="password" placeholder="Enter your password"
+						   name="password" />
+				</div>
+
+				<input type="checkbox">
+				<samp id="rememberme">Remember me</samp>
+				<a id="forgot" th:href="@{/user/retrivePassword}">Forgot Password?</a>
+
+				<div class="divButton">
+					<button type="submit" >
+<!--							onclick="setUserName()">-->
+						<h2 id="sign">Sign In</</h2>
+					</button>
+				</div>
+
+
+			</form>
+
+
+			<section class="social">
+				<div th:each="url,count: ${urls}" th:id="btn+${count.count}">
+
+					<a th:href="${url.value}">
+						<span class="clickable"></span>
+					</a>
+
+				</div>
+			</section>
+
+
+			<br>
+			<p>Don't have an account ? <a id="signup"th:href="@{/user/CreateAccount}">Sign Up</a></p>
+		</div>
+	</div>
+
+
+	<div class="imgDiv">
+		<img id="ouxtower" alt="oux tower"
+			 th:src="@{/images/oux_building.png}">
+	</div>
+
+	<img alt="oux" id="oux" th:src="@{/images/oux.png}">
+
+
+</div>
+
+
+</body>
+
+</html>
+
+

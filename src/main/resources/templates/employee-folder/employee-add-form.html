@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<link rel="stylesheet" th:href="@{/css/headershortcut.css}" />
+<link rel="stylesheet" th:href="@{/css/additions.css}" />
+<link rel="stylesheet" th:href="@{/css/employeeStyle.css}" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+		rel="stylesheet">
+
+
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+
+
+	<title>Add New Employee</title>
+</head>
+<body>
+
+
+<div th:replace="fragments/header :: headershortcut" />
+
+
+<h2>Add New Employee</h2>
+<div>
+
+
+
+
+	<form th:action="@{/employee/save}" th:object="${employee}"  method="POST">
+		<input type="hidden" th:field="*{empId}" name="empId" id="empId">
+
+		<table >
+
+			<tr>
+
+				<td>First Name :</td>
+				<td>
+					<div class="inputs" >
+						<input type="text" th:field="*{firstName}">
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('firstName')}">
+						<b th:errors="*{firstName}">Name Error</b>
+					</div>
+				</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Last Name :</td>
+				<td>
+					<div class="inputs">
+						<input type="text" th:field="*{lastName}" name="lastName">
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('lastName')}">
+						<b	th:errors="*{lastName}">Name Error</b>
+					</div>
+				</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Birth Date :</td>
+				<td>
+					<div>
+						<input class="dateInput" type="date" th:field="*{birthDate}"	name="birthDate">
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('birthDate')}">
+						<b th:errors="*{birthDate}">Name Error</b>
+					</div>
+				</td>
+
+			</tr>
+
+			<tr>
+
+				<td>address :</td>
+				<td>
+					<div class="inputs">
+						<input type="text" th:field="*{address}" name="address">
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('address')}">
+						<b th:errors="*{address}">Name Error</b>
+					</div>
+				</td>
+
+			</tr>
+
+			<tr>
+
+				<td>email :</td>
+				<td>
+					<div class="inputs">
+						<input type="text" th:field="*{email}" name="email">
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('email')}">
+						<b th:errors="*{email}">Name Error</b>
+					</div>
+				</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Department :</td>
+				<td>
+					<div>
+						<select class="selectItems" th:field="*{department}" id="departmentsFromServer">
+							<option value="">Select Department</option>
+							<option id="selectedDepartment"  th:each="departmentLoop: ${departments}" th:value="${{departmentLoop}}" th:text="${departmentLoop.name}" />
+						</select>
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('department')}">
+						<b th:errors="*{department}">Name Error</b>
+					</div>
+				</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Projects :</td>
+				<td>
+					<div>
+						<div class="dropDownCheckBoxs" id="dropDownCheckBoxsId" onclick="showProjectsName()">
+							<select class="selectItems" >
+								<option>Select Project</option>
+							</select>
+
+							<div id="projectNameFromLocal" class="dropdown-projects">
+
+							</div>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${projectError} == true">
+						<b>Project is required</b>
+					</div>
+				</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Hire Date :</td>
+				<td>
+					<div>
+						<input class="dateInput" type="date" th:field="*{hireDate}" name="hireDate">
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('hireDate')}">
+						<b th:errors="*{hireDate}">Name Error</b>
+					</div>
+				</td>
+
+			</tr>
+
+
+			<tr>
+
+				<td>Salary :</td>
+				<td>
+					<div class="inputs">
+						<input type=number step=any th:field="*{salary}" name="salary">
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('salary')}">
+						<b th:errors="*{salary}">Name Error</b>
+					</div>
+				</td>
+
+			</tr>
+
+			<tr>
+
+				<td>Phone :</td>
+				<td>
+					<div class="inputs">
+						<input type="text" name="phone" id="selectedPhone">	<input type="hidden" name="selectedPhone" id="selectedPhoneHidden">
+					</div>
+				</td>
+
+				<td>
+					<div class="errors" th:if="${phoneCheck} == false" style="display: inline-block">
+						<b th:text="${phoneCheckText}"></b>
+					</div>
+					<div style="display: inline-block">
+						<select class="selectItems" id="phoneNumber"	onchange="populate()" th:if="${show} == true">
+							<option value="" disabled>"--- phone numbers ---"</option>
+							<option th:each="phones: ${employeePhones}" th:text="${phones.phone}" th:value="${phones.phone}" />
+						</select>
+					</div>
+				</td>
+
+
+			</tr>
+
+
+
+			<tr>
+
+				<td colspan="2">
+
+					<div class="phoneButtons">
+						<button type="submit" name="submitButton" value="savePhone">Add Phone</button>
+
+						<button type="submit" name="submitButton" value="updatePhone">Update Phone</button>
+
+						<button type="submit" name="submitButton" value="deletePhone" onclick="if(!(confirm('Are you sure you want delete this phone number')))return false">Delete	Phone</button>
+					</div>
+
+				</td>
+
+			</tr>
+
+			<tr>
+				<td id="tdSaveButton" colspan="2">
+					<div>
+						<button type="submit" name="submitButton" value="saveButton">Save Employee</button>
+					</div>
+				</td>
+			</tr>
+
+
+
+		</table>
+
+
+
+
+	</form>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script th:src="@{/javascript/employeeScript.js}"></script>
+</body>
+</html>

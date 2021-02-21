@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<link rel="stylesheet" th:href="@{/css/errorAndEmail.css}" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+
+<head>
+    <meta charset="utf-8">
+    <title>Error</title>
+</head>
+<body>
+
+<!--    <div th:id="'error'+${errorNumber}" >-->
+
+<!--    </div>-->
+
+<!--    <h1>Something went wrong!-->
+<!--    <h2>Our Engineers are on it <i th:text="'error'+${errorNumber}"></i> </h2>-->
+<!--    <a href="/">Go Home</a>-->
+
+
+        <div class="errorBackground">
+            <img th:if="${errorNumber}==403" th:src="@{/images/403.png}" />
+            <img th:if="${errorNumber}==404" th:src="@{/images/404.png}" />
+            <img th:if="${errorNumber}==405" th:src="@{/images/405.png}" />
+        </div>
+
+         <div class="center">
+            <div class="heart" >
+
+                <div th:if="${errorNumber}==403" style="padding-left: 3%" class="errorDescription">
+                    <h1>Denied</h1>
+                    <h2>You do not have permission to access this page.</h2>
+                    <h3><a th:href="@{/main/adminstraions}" >Back To Home </a></h3>
+                    <img th:src="@{/images/403img.png}" >
+                </div>
+
+                <div th:if="${errorNumber}==404" class="errorDescription">
+                    <h1>OOps!</h1>
+                    <h2>The page you requested could not be found.</h2>
+                    <h2 th:if="${tokenStatus}==false" th:text="${description}" ></h2>
+                    <h3><a th:href="@{/main/adminstraions}" >Back To Home </a></h3>
+                    <img th:src="@{/images/404img.png}" >
+                </div>
+
+                <div th:if="${errorNumber}==405" style="padding-left: 2.5%" class="errorDescription">
+
+                    <h1>Not Allowed</h1>
+                    <h2>Requested method is not allowed for this page.</h2>
+                    <h3><a th:href="@{/main/adminstraions}" >Back To Home </a></h3>
+                    <img th:src="@{/images/403img.png}" >
+                </div>
+            </div>
+         </div>
+
+
+</body>
+</html>

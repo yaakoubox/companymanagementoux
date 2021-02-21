@@ -1,0 +1,338 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html xmlns:th="http://www.thymeleafe.org" >&ndash;&gt;-->
+
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;<meta charset="utf-8">&ndash;&gt;-->
+<!--&lt;!&ndash;<title>Create Account</title>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;	<h2>Create Account</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;	<form th:action="@{/user/save}" th:object="${user}" method="POST" >&ndash;&gt;-->
+<!--&lt;!&ndash;		<table>&ndash;&gt;-->
+<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td>Email :</td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td><input type="email" th:field="*{email}" ></td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td><b th:if="${#fields.hasErrors('email')}" th:errors="*{email}" >Error Name</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td>&ndash;&gt;-->
+<!--&lt;!&ndash;					<div th:if="${emailExist == true}">&ndash;&gt;-->
+<!--&lt;!&ndash;						<b>email exist</b>&ndash;&gt;-->
+<!--&lt;!&ndash;					</div>&ndash;&gt;-->
+<!--&lt;!&ndash;				</td>&ndash;&gt;-->
+<!--&lt;!&ndash;			</tr>&ndash;&gt;-->
+<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td>Username :</td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td><input type="text" th:field="*{username}" ></td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td><b th:if="${#fields.hasErrors('username')}" th:errors="*{username}" >Error Name</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td>&ndash;&gt;-->
+<!--&lt;!&ndash;					<div th:if="${usernameExsit == true}">&ndash;&gt;-->
+<!--&lt;!&ndash;						<b>username exist</b>&ndash;&gt;-->
+<!--&lt;!&ndash;					</div>&ndash;&gt;-->
+<!--&lt;!&ndash;				</td>&ndash;&gt;-->
+<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
+<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td>Password :</td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td><input type="password" th:field="*{password}" ></td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td><b th:if="${#fields.hasErrors('password')}" th:errors="*{password}" >Error Name</b></td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td></td>&ndash;&gt;-->
+<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
+<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td>Confirm Password :</td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td><input type="password" name="confirmPassword">  </td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td>&ndash;&gt;-->
+<!--&lt;!&ndash;					<div th:if="${passwordMatch == false}">&ndash;&gt;-->
+<!--&lt;!&ndash;						<b>pass word not match</b>&ndash;&gt;-->
+<!--&lt;!&ndash;					</div>&ndash;&gt;-->
+<!--&lt;!&ndash;				</td>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td></td>&ndash;&gt;-->
+
+<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
+<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
+<!--&lt;!&ndash;				<td><button type="submit" name="submitButton" value="save">save</button></td>&ndash;&gt;-->
+<!--&lt;!&ndash;			<tr>&ndash;&gt;-->
+<!--&lt;!&ndash;		</table>&ndash;&gt;-->
+<!--&lt;!&ndash;	</form>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleafe.org">-->
+
+<!--<link rel="stylesheet" th:href="@{/css/loginStyle.css}" />-->
+
+<!--<link rel="preconnect" href="https://fonts.gstatic.com">-->
+<!--<link-->
+<!--		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"-->
+<!--		rel="stylesheet">-->
+<!--<head>-->
+<!--	<meta charset="utf-8">-->
+<!--	<title>Create Account</title>-->
+<!--</head>-->
+<!--<body>-->
+
+
+
+
+
+
+
+<!--<div class="leftSide"></div>-->
+
+<!--<div class="rightSide">-->
+
+<!--	<div class="logoContainer">-->
+<!--		<p class="ouxLogo">-->
+<!--			<span class="OXLetters">O</span><span class="ULetter">U</span><span-->
+<!--				class="OXLetters">X</span>-->
+<!--		</p>-->
+<!--		<h5>Company</h5>-->
+<!--		<h5>Management</h5>-->
+<!--	</div>-->
+
+
+<!--	<div class="description">-->
+<!--		<div class="heading">Connect operation and acros your small or-->
+<!--			medium-sized</div>-->
+<!--		<div class="demonstration">Connect operation acros your small-->
+<!--			or medium-sized busness Connect operation acros your small</div>-->
+<!--	</div>-->
+
+<!--	<div class="AccountForm">-->
+
+<!--		<div class="AccountContent">-->
+<!--			<span class="welcomein">Create </span><span class="ouxLogo"><span-->
+<!--				class="OXLetters">O</span><span class="ULetter">U</span><span-->
+<!--				class="OXLetters">X</span> </span><span class="welcomein">Account</span>-->
+<!--			<h2>It's quick and safe</h2>-->
+
+
+<!--			<form th:action="@{/user/save}" th:object="${user}" method="POST">-->
+
+<!--				<br> <b>Email</b> <br>-->
+<!--				<div class="inputs">-->
+<!--					<input type="email" th:field="*{email}" placeholder="Enter your email">-->
+
+<!--					<div th:if="${#fields.hasErrors('email')}" class="errors">-->
+<!--						<span th:errors="*{email}">Error Name</span>-->
+<!--					</div>-->
+
+<!--					<div th:if="${emailExist == true}">-->
+<!--						email exist-->
+<!--					</div>-->
+<!--				</div>-->
+
+
+<!--				<br> <b>Username</b> <br>-->
+<!--				<div class="inputs">-->
+<!--					<input type="text" th:field="*{username}" placeholder="Enter your username">-->
+
+<!--					<div th:if="${#fields.hasErrors('username')}" class="errors">-->
+<!--						<span th:errors="*{username}" >Error Name</span>-->
+<!--					</div>-->
+
+
+
+<!--					<div th:if="${usernameExsit == true}" class="errors">-->
+<!--						username exist-->
+<!--					</div>-->
+<!--				</div>-->
+
+<!--				<br> <b>Password</b> <br>-->
+<!--				<div class="inputs">-->
+<!--					<input type="password" th:field="*{password}" placeholder="Enter your password">-->
+
+<!--					<div th:if="${#fields.hasErrors('password')}"  class="errors">-->
+<!--						<span th:errors="*{password}" >Error Name</span>-->
+<!--					</div>-->
+
+
+<!--				</div>-->
+
+<!--				<br> <b>Confirm Password</b> <br>-->
+<!--				<div class="inputs">-->
+<!--					<input type="password" name="confirmPassword" placeholder="Confirm your password">-->
+<!--					<div th:if="${passwordMatch == false}" class="errors" >-->
+<!--						pass word not match-->
+<!--					</div>-->
+<!--				</div>-->
+
+
+
+
+<!--				<div class="divButton">-->
+<!--					<button type="submit" name="submitButton" value="save" id="sign"><h2 id="sign">Sign Up</</h2></button>-->
+<!--				</div>-->
+
+
+
+
+
+
+<!--			</form>-->
+
+
+
+
+
+
+
+<!--		</div>-->
+<!--	</div>-->
+
+
+
+<!--	<div class="imgDiv">-->
+<!--		<img id="ouxtower" alt="oux tower"-->
+<!--			 th:src="@{/images/oux_building.png}">-->
+<!--	</div>-->
+
+<!--	<img alt="oux" id="oux" th:src="@{/images/oux.png}">-->
+
+
+
+<!--</div>-->
+
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleafe.org">
+
+<link rel="stylesheet" th:href="@{/css/loginStyle.css}" />
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+		rel="stylesheet">
+<head>
+	<meta charset="utf-8">
+	<title>Create Account</title>
+</head>
+<body>
+
+
+
+
+
+
+
+<div class="leftSide"></div>
+
+<div class="rightSide">
+
+	<div class="logoContainer">
+		<p class="ouxLogo">
+			<span class="OXLetters">O</span><span class="ULetter">U</span><span
+				class="OXLetters">X</span>
+		</p>
+		<h5>Company</h5>
+		<h5>Management</h5>
+	</div>
+
+
+	<div class="description">
+		<div class="heading">Connect operation and acros your small or
+			medium-sized</div>
+		<div class="demonstration">Connect operation acros your small
+			or medium-sized busness Connect operation acros your small</div>
+	</div>
+
+	<div class="AccountForm">
+
+		<div class="AccountContent">
+			<span class="welcomein">Create </span><span class="ouxLogo"><span
+				class="OXLetters">O</span><span class="ULetter">U</span><span
+				class="OXLetters">X</span> </span><span class="welcomein">Account</span>
+			<h2>It's quick and safe</h2>
+
+
+			<form th:action="@{/user/save}" th:object="${user}" method="POST">
+
+				<br> <b>Email</b> <br>
+				<div class="inputs">
+					<input type="email" th:field="*{email}" placeholder="Enter your email">
+
+					<div th:if="${#fields.hasErrors('email')}" class="errors">
+						<span th:errors="*{email}">Error Name</span>
+					</div>
+
+					<div th:if="${emailExist == true}" class="errors">
+						email already exists
+					</div>
+				</div>
+
+
+				<br> <b>Username</b> <br>
+				<div class="inputs">
+					<input type="text" th:field="*{realUsername}" placeholder="Enter your username">
+
+					<div th:if="${#fields.hasErrors('username')}" class="errors">
+						<span th:errors="*{username}" >Error Name</span>
+					</div>
+
+
+
+					<div th:if="${usernameExsit == true}" class="errors">
+						username exist
+					</div>
+				</div>
+
+				<br> <b>Password</b> <br>
+				<div class="inputs">
+					<input type="password" th:field="*{password}" placeholder="Enter your password">
+
+					<div th:if="${#fields.hasErrors('password')}"  class="errors">
+						<span th:errors="*{password}" >Error Name</span>
+					</div>
+
+
+				</div>
+
+				<br> <b>Confirm Password</b> <br>
+				<div class="inputs">
+					<input type="password" name="confirmPassword" placeholder="Confirm your password">
+					<div th:if="${passwordMatch == false}" class="errors" >
+						Password not match
+					</div>
+				</div>
+
+
+
+
+				<div class="divButton">
+					<button type="submit" name="submitButton" value="save" id="sign"><h2 id="sign">Sign Up</</h2></button>
+				</div>
+
+
+
+
+
+
+			</form>
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+
+
+	<div class="imgDiv">
+		<img id="ouxtower" alt="oux tower"
+			 th:src="@{/images/oux_building.png}">
+	</div>
+
+	<img alt="oux" id="oux" th:src="@{/images/oux.png}">
+
+
+
+</div>
+
+
+</body>
+</html>

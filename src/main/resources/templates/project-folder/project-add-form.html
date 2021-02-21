@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+
+<link rel="stylesheet" th:href="@{/css/headershortcut.css}" />
+<link rel="stylesheet" th:href="@{/css/additions.css}" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+		rel="stylesheet">
+<head>
+<meta charset="utf-8">
+<title>Add New Project</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: headershortcut" />
+
+<h2>Add New Project</h2>
+<div>
+
+	<form th:action="@{/project/save}" method="POST" th:object="${project}" onsubmit="addProjectToLocalStorage()"  >
+		<input type="hidden" th:field="*{projId}" />
+
+		<table>
+			<tr>
+				<td>Name :</td>
+				<td>
+					<div class="inputs" >
+						<input type="text" th:field="*{name}" id="projectName" />
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('name')}">
+						<b th:errors="*{name}" id="projectNameEroors"></b>
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${showError} == true">
+						<b id="projectNameExisting" >this project already exist in this department , change the name or change the department</b>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Location :</td>
+				<td>
+					<div class="inputs" >
+						<input type="text" th:field="*{location}" id="location"/>
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('location')}">
+						<b th:errors="*{location}" id="locationEroors" ></b>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td>Department :</td>
+				<td>
+					<div class="dateAndSelectInput" >
+						<select th:field="*{department}" id="selectedDepartment" >
+							<option value=""  >Select Department</option>
+							<option  th:each="departmentLoop: ${departments}" th:value="${{departmentLoop}}" th:text="${departmentLoop.name}" />
+						</select>
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('department')}">
+						<b  th:errors="*{department}" id="departmentErrors">Name Error</b>
+					</div>
+				</td>
+					
+			</tr>
+			<tr>
+				<td id="tdSaveButton" colspan="2">
+					<div>
+						<button class="deptAndProjButton" type="submit" >Save Project</button> </td>
+					</div>
+				</td>
+			</tr>
+		</table>
+		
+	</form>
+</div>
+	
+	<script th:src="@{/javascript/employeeScript.js}"></script>
+</body>
+</html>

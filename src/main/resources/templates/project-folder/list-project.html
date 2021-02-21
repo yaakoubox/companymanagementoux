@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+<link rel="stylesheet" th:href="@{/css/list.css}" />
+<link rel="stylesheet" th:href="@{/css/headershortcut.css}" />
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+		rel="stylesheet">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Projects List</title>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: headershortcut" />
+
+
+<form th:action="@{/project/search}" method="POST">
+	<div class="inputs">
+
+		<div>
+			<span>Search By :</span>
+		</div>
+
+		<div>
+			<select name="searchBy">
+				<option>Name</option>
+				<option>Location</option>
+				<option>Department Name</option>
+				<option>Department Location</option>
+			</select>
+		</div>
+
+		<div>
+			<input type="text" name="searchText" placeholder="Search for ?" />
+		</div>
+
+		<div>
+			<button type="submit">Search</button>
+		</div>
+
+		<!-- 				here is some problem of shoemyloginpage -->
+
+		<a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')"
+		   id="btnAdd" th:href="@{/project/add}">
+			<div>Add Project</div>
+		</a> <a id="btnList" th:href="@{/project/list}">
+		<div id="getdata">Get all data</div>
+	</a>
+
+
+	</div>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tableDiv">
+	<div class="holder" >
+	<table id="tab">
+		<thead>
+		<tr>
+			<th>Project Name</th>
+			<th>location</th>
+			<th>department</th>
+			<th sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="tempProject: ${projects}">
+			<td th:text="${tempProject.name}" />
+			<td th:text="${tempProject.location}" />
+			<td th:text="${tempProject.department.name}" />
+			<td sec:authorize="hasRole('ROLE_ADMIN')">
+
+
+				<a th:href="@{/project/delete(projectId=${tempProject.projId})}" onclick="if(!(confirm('Are you sure you want delete this employee'))) return false">
+					<div class="btnDelete" >Delete</div>
+				</a>
+
+
+				<a  th:href="@{/project/update(projectId=${tempProject.projId})}">
+					<div class="btnUpdate" >Update</div>
+				</a>
+
+
+
+
+			</td>
+		</tr>
+		</tbody>
+
+	</table>
+	</div>
+</div>
+
+
+	<script th:src="@{/javascript/employeeScript.js}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

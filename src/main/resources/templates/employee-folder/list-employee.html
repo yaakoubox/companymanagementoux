@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<link rel="stylesheet" th:href="@{/css/list.css}" />
+<link rel="stylesheet" th:href="@{/css/headershortcut.css}" />
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+		rel="stylesheet">
+
+
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+
+
+	<title>Employees List</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: headershortcut" >
+</div>
+
+
+
+
+
+
+
+
+
+<form  th:action="@{/employee/search}" method="POST">
+	<div class="inputs">
+
+		<div>
+			<span>Search By :</span>
+		</div>
+
+		<div>
+			<select name="searchBy">
+				<option>First Name</option>
+				<option>Last Name</option>
+				<option>Address</option>
+				<option>Email</option>
+				<option>Salary</option>
+				<option>Birth Date</option>
+				<option>Hire Date</option>
+				<option>Phone number</option>
+				<option>Department Name</option>
+				<option>Department Location</option>
+				<option>Project Name</option>
+				<option>Project Location</option>
+			</select>
+		</div>
+
+		<div>
+			<input type="text" name="searchText" placeholder="Search for ?" />
+		</div>
+
+		<div>
+			<button type="submit" >Search</button>
+		</div>
+
+		<div th:if="${numberFormat}==true" class="errors">
+			<b>it must be a number format</b>
+		</div>
+
+		<div th:if="${dateFormat}==true" class="errors" >
+			<b >date format must be like yyyy-mm-dd </b>
+		</div>
+
+
+
+
+
+
+		<a 	sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_ADMIN')" id="btnAdd" th:href="@{/employee/add}">
+			<div>Add Employee</div>
+		</a>
+
+
+		<a id="btnList" th:href="@{/employee/list}">
+			<div id="getdata">Get all data</div>
+		</a>
+
+
+	</div>
+
+</form>
+
+<div class="tableDiv">
+	<div class="holder" >
+	<table id="tab">
+		<thead>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Address</th>
+			<th>Email</th>
+			<th>Salary</th>
+			<th>Birth Date</th>
+			<th>Hire Date</th>
+			<th>Department</th>
+			<th>Projects</th>
+			<th>Phones</th>
+			<th sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_ADMIN')" >Actions</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<tr th:each="tempEmployee: ${employees}">
+
+			<td th:text="${tempEmployee.firstName}" />
+			<td th:text="${tempEmployee.lastName}" />
+			<td th:text="${tempEmployee.address}" />
+			<td th:text="${tempEmployee.email}" />
+			<td th:text="${tempEmployee.salary}" />
+			<td th:text="${tempEmployee.birthDate}" />
+			<td th:text="${tempEmployee.hireDate}" />
+			<td th:text="${tempEmployee.department.name}" />
+
+			<td>
+				<table class="innerTable">
+					<tbody>
+					<tr th:each="project,projectCounter : ${tempEmployee.workOns}" >
+
+						<td th:text="${project.project.name}" ></td>
+					</tr>
+					</tbody>
+				</table>
+			</td>
+
+			<td>
+				<table class="innerTable" >
+					<tbody>
+					<tr th:each="phones,phoneCounter : ${tempEmployee.employeePhones}" >
+
+						<td th:text="${phones.phone}" >phone number</td>
+					</tr>
+					</tbody>
+				</table>
+
+
+			</td>
+
+			<td>
+
+
+				<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/employee/delete(employeeId=${tempEmployee.empId})}" onclick="if(!(confirm('Are you sure you want delete this employee')))return false">
+					<div class="btnDelete" >Delete</div>
+				</a>
+
+
+
+
+				<a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" th:href="@{/employee/update(employeeId=${tempEmployee.empId})}">
+					<div class="btnUpdate" >Update</div>
+				</a>
+
+
+
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<script th:src="@{/javascript/employeeScript.js}"></script>
+</body>
+</html>

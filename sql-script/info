@@ -1,0 +1,26 @@
+var deps_projects = {
+    "departments": {
+        "IT": [
+            {"proj_id":"Proj1"},
+            {"proj_id":"Proj2"},
+        ],
+        "SI": [
+            {"proj_id":"Proj3"},
+            {"proj_id":"Proj4"}
+        ]
+    }
+}
+
+deps_projects.departments.IT
+
+deps_projects.departments.SI
+
+localStorage.setItem("deps",deps_projects)
+
+localStorage.getItem("deps")
+
+1- create a Spring Boot Get method /departmentsProject - this method call rge database to get a Departments Object with List of Projects objects AS APPLICATION/JSON
+2- jquery ajax Get call to get the departments/projects as json
+3- in the success block will recieve the data json then u can handle it how u want (save in local storage or fill the projects list in the runtime ...)
+4- onselect (http://jsfiddle.net/j08691/XssCG/) department dropdown select option , we generate the projects list on the runtime (https://jsfiddle.net/techiedelight/hw91zuxq/) by javascript
+5- we call the projects from localStorage or DDirect request to the server by sending the dept id

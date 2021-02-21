@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<link rel="stylesheet" th:href="@{/css/headershortcut.css}" />
+<link rel="stylesheet" th:href="@{/css/additions.css}" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+		rel="stylesheet">
+
+<head>
+<meta charset="utf-8">
+<title>Add New Department</title>
+</head>
+<body>
+<div th:replace="fragments/header :: headershortcut" />
+
+
+<h2>Add New Department</h2>
+<div>
+
+
+	<form th:action="@{/department/save}" method="POST" th:object="${department}" >
+		<input type="hidden" th:field="*{deptId}"  >
+
+		<table >
+			<tr>
+				<td>Name :</td>
+				<td>
+					<div class="inputs" >
+						<input type="text" th:field="*{name}" >
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('name')}">
+						<b th:errors="*{name}" >Name Error</b>
+						<b th:if="${showError} == true" >this department already exist</b>
+					</div>
+					<div class="errors" th:if="${showError} == true">
+						<b>this department already exist</b>
+					</div>
+				</td>
+
+			</tr>
+
+			<tr>
+				<td>Location :</td>
+				<td>
+					<div class="inputs" >
+						<input type="text" th:field="*{location}" >
+					</div>
+				</td>
+				<td>
+					<div class="errors" th:if="${#fields.hasErrors('location')}">
+						<b th:errors="*{location}">Name Errors</b>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td id="tdSaveButton" colspan="2">
+					<div>
+						<button class="deptAndProjButton" type="submit" >Save Department</button>
+					</div>
+				</tr>
+			</tr>
+		</table>
+
+	</form>
+
+
+</div>
+
+</body>
+</html>

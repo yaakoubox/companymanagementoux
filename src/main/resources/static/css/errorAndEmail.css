@@ -1,0 +1,159 @@
+body{
+    margin: 0;
+    background-color: #4d9ad4;
+    font-family: 'Open Sans', sans-serif;
+}
+.center{
+    margin: 0 auto;
+    width: 83%;
+    height: 100vh;
+    background-color: #f2f3f4;
+}
+
+.heart{
+    box-shadow: 0px 0px 40px 10px #d6e1ea;
+    margin: 0 auto;
+    width: 60%;
+    height: 100vh;
+    background-color: white;
+}
+
+.errorBackground img{
+    position: absolute;
+    width: 83%;
+    display:block;
+    left:0;
+    right:0;
+    top:0;
+    margin: 0 auto;
+}
+
+.registrationDescription , .errorDescription{
+    position: absolute;
+    margin:0px auto;
+    text-align: center;
+    left:0;
+    right:0;
+    top:15%;
+    margin: 0 auto;
+
+}
+
+.registrationDescription h1 , .errorDescription h1{
+    font-size: 3.5rem;
+}
+.registrationDescription img , .errorDescription img{
+    width: 27%;
+    height: 100%;
+}
+.registrationDescription a , .errorDescription a{
+    text-decoration: none;
+    color:#4d9ad4 ;
+}
+.submitButton{
+    margin: 20px;
+    width: 80px;
+    background-color: #4d9ad4;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+}
+.submitButton:hover{
+    background-color: #246494;
+}
+
+
+input {
+    background: transparent;
+    font-size: 1.5rem;
+
+    border: 2px solid #dadce0;
+    border-radius: 10px;
+    line-height: 5px;
+    width: 350px;
+    height: 30px;
+    padding: 10px;
+    text-align: center;
+    margin: 20px;
+}
+input:focus {
+    outline: none !important;
+    border:2px solid #4d9ad4;
+    box-shadow: 0 0 10px #719ECE;
+}
+
+#confirmationdiv{
+    box-shadow: 0px 0px 40px 0px #1f9839;
+    font-size:1rem;
+    font-weight:900;
+    padding:10px;
+    color: #1f9839;
+    border: 3px solid #1f9839;
+    border-radius:10px;
+    background-color: rgba(223,241,217, 0.5);
+    text-align: center;
+    width: 350px;
+    opacity: 0.5;
+    margin: 20px auto;
+
+}
+
+#invaliddiv{
+    box-shadow: 0px 0px 40px 0px #f411bd;
+    font-size:1rem;
+    font-weight:900;
+    padding:10px;
+    color: #f411bd;
+    border: 3px solid #f411bd;
+    border-radius:10px;
+    background-color: rgba(255, 152, 230, 0.5);
+    text-align: center;
+    width: 250px;
+    opacity: 0.5;
+    margin: 20px auto;
+}
+table{
+    margin: 0 auto;
+    text-align: left;
+}
+.administration{
+    background-color: #4d9ad4;;
+    height: 100px;
+    width: 600px;
+    border: 2px solid #dadce0;
+    border-radius: 20px;
+    margin: 50px auto;
+    color: white;
+}
+.administration:hover{
+    border:2px solid #4d9ad4;
+    box-shadow: 0 0 40px #719ECE;
+}
+
+.administration h2{
+    margin-top: 25px;
+    font-size: 2rem;
+}
+
+.logo{
+    margin-top: 150px;
+}
+
+.logo span{
+    font-size:2.5rem;
+    font-weight:900;
+    width: 168px;
+}
+.logo h5{
+    margin: 0;
+    color: black;
+}
+.OXLetters{
+    color:#4d9ad4;
+}
+
+.ULetter{
+    color: #f411bd;
+}

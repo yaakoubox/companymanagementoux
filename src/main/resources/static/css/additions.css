@@ -1,0 +1,123 @@
+.errors{
+    background-color: rgba(255, 152, 230, 0.5);
+    font-size:1rem;
+    border: 2px solid #f411bd;
+    border-radius:10px;
+    box-shadow: 0px 0px 40px 0px #f411bd;
+    margin: 7px;
+    font-weight:600;
+    color: #f411bd;
+    text-align: center;
+    opacity: 0.5;
+    outline: none;
+    height: 23px;
+    padding: 0px 10px;
+
+}
+
+
+.selectItems , .dateInput , .inputs input {
+    background: transparent;
+    font-size: 1rem;
+    border: 2px solid rgb(188,188,188);
+    border-radius: 10px;
+    width:250px;
+    outline: none;
+    margin: 7px;
+    padding: 0px 0px 0px 10px;
+}
+
+.selectItems option{
+    background-color: #f2f3f4 ;
+}
+.selectItems option:hover{
+    background-color: #4d9ad4;
+}
+
+
+.dateInput{
+    width:250px;
+}
+
+.selectItems{
+    width:264px;
+}
+
+.selectItems:focus , .selectItems:hover , .dateInput:hover , .dateInput:focus , .inputs input:hover , inputs input:focus {
+    outline: none !important;
+    border:2px solid #4d9ad4;
+    box-shadow: 0 0 10px #719ECE;
+}
+
+
+
+td {
+    padding-left: 50px;
+}
+
+h2{
+    margin: 30px 50px;
+}
+
+.phoneButtons{
+    margin: 30px 0px;
+    display: flex;
+    flex-direction:row;
+    border-radius:10px ;
+
+}
+
+
+
+#tdSaveButton div{
+    margin-right: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phoneButtons button {
+    height: 40px;
+    flex: 1 1 0px;
+    border-radius:10px ;
+    border: none;
+    background-color:#4d9ad4 ;
+    color: white;
+    outline: none;
+    margin: 0px 5px;
+}
+
+#tdSaveButton button{
+      height: 50px;
+      border-radius:10px ;
+      border: none;
+      background-color:#4d9ad4 ;
+      color: white;
+      outline: none;
+      padding: 5px 30px;
+      font-size: 1.2rem;
+  }
+
+
+
+.phoneButtons button:hover , #tdSaveButton button:hover{
+    cursor: pointer;
+}
+.phoneButtons button:active , #tdSaveButton button:active{
+    background-color:#246494 ;
+}
+
+.deptAndProjButton{
+    margin-top: 20px;
+}
+
+#projectNameFromLocal{
+    margin: 0px 7px;
+    width: 252px;
+    padding-left:12px;
+    background-color: #f2f3f4;
+    /*border: 1px solid black;*/
+}
+#projectNameFromLocal label:hover{
+    background-color: #4d9ad4;
+}

@@ -1,0 +1,60 @@
+
+
+<div class="header" th:fragment="headershortcut">
+
+    <div class="topnav2" id="myTopnav2">
+
+        <a th:href="@{/main/adminstraions}" >
+            <div class="logo" >
+                <p class="dropbtnlogo" >
+                    <span class="OXLetters">O</span><span class="ULetter">U</span><span	class="OXLetters">X</span>
+                </p>
+                <h5>Company</h5>
+                <h5>Management</h5>
+
+            </div>
+        </a>
+
+        <div class="dropdown2" >
+            <button class="dropbtn2" id="accountName" ><b th:text="${principalUsername}"  id="principalUsername" /><br>Account</button>
+<!--            id="dropdown-content2Account"-->
+            <div class="dropdown-content2" >
+                <form class="dropdown-content2" action="#" th:action="@{/logout}" method="POST">
+                    <input  type="submit" value="Sign Out"  />
+                </form>
+            </div>
+        </div>
+
+        <div class="dropdown2" >
+            <button class="dropbtn2"  ><a th:href="@{/project/list}">Project List</a></button>
+
+            <div sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_ADMIN')" class="dropdown-content2">
+                <a th:href="@{/project/add}" >Add</a>
+            </div>
+
+        </div>
+
+        <div class="dropdown2" >
+            <button  class="dropbtn2" ><a th:href="@{/employee/list}">Employee List</a></button>
+            <div sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_ADMIN')" class="dropdown-content2">
+                <a th:href="@{/employee/add}" >Add</a>
+            </div>
+        </div>
+
+        <div class="dropdown2" >
+            <button class="dropbtn2" ><a th:href="@{/department/list}">Department List</a></button>
+            <div sec:authorize="hasRole('ROLE_ADMIN')" class="dropdown-content2">
+                <a th:href="@{/department/add}" >Add</a>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+
+
